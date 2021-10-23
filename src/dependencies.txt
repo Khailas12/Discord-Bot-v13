@@ -7,3 +7,5 @@ npm install -g typescript ts-node   -> typescript
 tsc -init   ->  to initialize typescript (creates the tsconfig.json file)
 
 ts-node index.ts  -> to open file
+
+npm run tsc   -> this converts ts to js and the js file would be in the dir 
