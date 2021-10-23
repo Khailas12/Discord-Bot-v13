@@ -1,0 +1,9 @@
+npm init -y   -> package.json
+
+npm install discord.js dotenv  -> dotenv
+
+npm install -g typescript ts-node   -> typescript
+
+tsc -init   ->  to initialize typescript (creates the tsconfig.json file)
+
+ts-node index.js  -> to open file
