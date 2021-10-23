@@ -6,4 +6,4 @@ npm install -g typescript ts-node   -> typescript
 
 tsc -init   ->  to initialize typescript (creates the tsconfig.json file)
 
-ts-node index.js  -> to open file
+ts-node index.ts  -> to open file
