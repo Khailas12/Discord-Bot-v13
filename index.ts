@@ -2,8 +2,10 @@ import DiscordJS, { Intents } from 'discord.js'
 import dotenv from 'dotenv'
 import path from 'path'
 import WOKCommands from 'wokcommands'
+import testSchema from './test-schema'
 import mongoose from 'mongoose'
 // const mongoose = require('mongoose') -> in js
+
 
 dotenv.config()
 
@@ -28,9 +30,16 @@ client.on('ready', async () => {
     new WOKCommands(client, {
         commandDir: path.join(__dirname, 'commands'),
         typeScript: true,
-        testServers: String(process.env.GUILD_ID),  // discord server ID
-        botOwners: String(process.env.BOT_ID),
+        testServers: process.env.GUILD_ID,  // discord server ID
+        botOwners: process.env.BOT_ID,
+        // mongoUri: process.env.MONGO_URI,
     })
+
+    setTimeout(async () => {
+        await new testSchema({
+            message: 'hi,'
+        }).save()
+    }, 1000)
 })
 
 client.login(process.env.BOT_TOKEN)
