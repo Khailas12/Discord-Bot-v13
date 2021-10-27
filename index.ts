@@ -28,8 +28,27 @@ client.on('ready', () => {
         commands = client.application?.commands;
     }
     commands?.create({
-        name: 'bruce',
-        description: 'Resplies with hey',
+        name: 'hey',
+        description: 'Replies with hey',
+    })
+
+    commands?.create({
+        name: 'add',
+        description: 'Adds two numbers',
+        options: [
+            {
+                name: 'num1',
+                description: 'First number',
+                required: true,
+                type: DiscordJS.Constants.ApplicationCommandOptionTypes.NUMBER,
+            },
+            {
+                name: 'num2',
+                description: 'Second number',
+                required: true,
+                type: DiscordJS.Constants.ApplicationCommandOptionTypes.NUMBER,
+            }
+        ]
     })
 })
 
@@ -40,15 +59,14 @@ client.on('interactionCreate', async (interation) => {
     }
 
     const { commandName, options } = interation;
-})
 
-
-client.on('messageCreate', (message) => {
-    if (message.content == 'hey') {
-        message.reply({
-            content: 'wadup?',
+    if (commandName === 'hey') {
+        interation.reply({
+            content: 'pong',
+            ephemeral: true,    // this makes the msg private from others to see
         })
     }
 })
+
 
 client.login(process.env.BOT_TOKEN)
