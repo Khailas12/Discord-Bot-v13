@@ -1,11 +1,11 @@
 import { ICommand } from 'wokcommands';
 
-// this allows to use both ! and / commands
-// !ping or /ping
 export default {
     category: 'Testing',
     description: 'Replies with Hello',
-
+    
+    // this allows to use both legacy ! and slash / commands.
+    // !ping or /ping
     slash: 'both',
     testOnly: true,
 
