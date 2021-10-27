@@ -65,8 +65,21 @@ client.on('interactionCreate', async (interation) => {
             content: 'pong',
             ephemeral: true,    // this makes the msg private from others to see
         })
+
+    } else if (commandName === 'add') {
+        const num1 = options.getNumber('num1')!;    // ! is used because the required is true
+        const num2 = options.getNumber('num2')!;
+
+        await interation.deferReply({
+            ephemeral: true,
+        })
+        
+        await new Promise((resolve) => setTimeout(resolve, 5500))
+
+        await interation.reply({
+            content: `The sum is ${num1 + num2}`,
+        })
     }
 })
-
 
 client.login(process.env.BOT_TOKEN)
