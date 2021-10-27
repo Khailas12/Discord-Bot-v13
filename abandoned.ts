@@ -1,7 +1,5 @@
 import DiscordJS, { Intents } from 'discord.js'
 import dotenv from 'dotenv'
-import path from 'path'
-import WOKCommands from 'wokcommands'
 
 
 dotenv.config()
@@ -19,11 +17,6 @@ const client = new DiscordJS.Client({
 client.on('ready', () => {
     console.log('Bot is online');
 
-    new WOKCommands(client, {
-        commandDir: path.join(__dirname, 'commands'),
-        typeScript: true,
-    })
-
     const guildId = String(process.env.GUILD_ID);   // discord server ID
     const guild = client.guilds.cache.get(guildId);
 
@@ -34,10 +27,10 @@ client.on('ready', () => {
     } else {
         commands = client.application?.commands;
     }
-    // commands?.create({
-    //     name: 'hey',
-    //     description: 'Replies with hey',
-    // })
+    commands?.create({
+        name: 'hey',
+        description: 'Replies with hey',
+    })
 
     commands?.create({
         name: 'add',
