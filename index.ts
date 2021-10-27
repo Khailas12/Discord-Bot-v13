@@ -17,7 +17,7 @@ const client = new DiscordJS.Client({
 client.on('ready', () => {
     console.log('Bot is online');
 
-    const guildId = String(process.env.GUILD_ID);
+    const guildId = String(process.env.GUILD_ID);   // discord server ID
     const guild = client.guilds.cache.get(guildId);
 
     let commands;
@@ -48,7 +48,7 @@ client.on('ready', () => {
                 required: true,
                 type: DiscordJS.Constants.ApplicationCommandOptionTypes.NUMBER,
             }
-        ]
+        ],
     })
 })
 
@@ -73,10 +73,10 @@ client.on('interactionCreate', async (interation) => {
         await interation.deferReply({
             ephemeral: true,
         })
-        
-        await new Promise((resolve) => setTimeout(resolve, 5500))
 
-        await interation.reply({
+        await new Promise((resolve) => setTimeout(resolve, 5000))
+
+        await interation.editReply({
             content: `The sum is ${num1 + num2}`,
         })
     }
