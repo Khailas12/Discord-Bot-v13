@@ -7,7 +7,13 @@ export default {
     description: 'Sends an embed',
 
     permissions: ['ADMINISTRATOR'],
-    callback: ({ message, text }) => {
+    callback: async ({ message, text }) => {
+//         const json = JSON.parse(text)
+//         const embed = new MessageEmbed(json)
+//         return embed
+//     },
+// } as ICommand
+
         const embed = new MessageEmbed()
             .setTitle("Hi, I'm DONA")
             .setDescription('Hello')
@@ -27,7 +33,20 @@ export default {
             },
         ])
         .addField('name three', 'value three')
-            
-        return embed
-    }
+
+        // this edits the title after 3 secs of msg sent.
+        const newMessage = await message.reply({
+            embeds: [embed]
+        });
+        
+        // waits for 3 secs
+        await new Promise((resolve) => setTimeout(resolve, 5000))
+
+        const newEmbed = newMessage.embeds[0]
+        newEmbed.setTitle('Edited title');
+
+        newMessage.edit({
+            embeds: [newEmbed],
+        })
+    },
 } as ICommand
